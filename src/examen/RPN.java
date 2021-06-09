@@ -1,9 +1,11 @@
 package examen;
 public class RPN {
+	//poner informacion 
 	public void pushPila(double nuevo_dato) {
 		NodoPila nuevo_nodo = new NodoPila(nuevo_dato, nodo);
 		nodo = nuevo_nodo;
 	}
+	//extraer informacion
 	public double popPila( ) {
 		double dato_arriba = nodo.dato;
 		nodo = nodo.abajo;
@@ -13,20 +15,28 @@ public class RPN {
 		nodo = null;
 		this.commando = commando;
 	}
+	
 	public double suma(double a, double b) {
 		
 		double result= a + b;
 		return result;
 	}
-	public void resta(double a, double b) {
-		pushPila(a - b);
+	
+	public double resta(double a, double b) {
+		double result= a - b;
+		return result;
 	}
-	public void mult(double a, double b) {
-		pushPila(a * b);
+	
+	public double mult(double a, double b) {
+		double result= a * b;
+		return result;
 	}
-	public void div(double a, double b) {
-		pushPila(a / b);
+	
+	public double div(double a, double b) {
+		double result= a / b;
+		return result;
 	}
+	
 	public double resultado( ) {
 		double a, b;
 	
@@ -53,15 +63,15 @@ public class RPN {
 			} else if(commando.charAt(contador) == '-') {
 				b = popPila( );
 				a = popPila( );
-				pushPila(a - b);
+				pushPila(resta(a,b));
 			} else if(commando.charAt(contador) == '*') {
 				b = popPila( );
 				a = popPila( );
-				pushPila(a * b);
+				pushPila(mult(a,b));
 			} else if(commando.charAt(contador) == '/') {
 				b = popPila( );
 				a = popPila( );
-				pushPila(a / b);
+				pushPila(div(a,b));
 			}
 			else if(commando.charAt(contador) == '^') {
 				b = popPila( );
