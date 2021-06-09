@@ -13,8 +13,23 @@ public class RPN {
 		nodo = null;
 		this.commando = commando;
 	}
+	public double suma(double a, double b) {
+		
+		double result= a + b;
+		return result;
+	}
+	public void resta(double a, double b) {
+		pushPila(a - b);
+	}
+	public void mult(double a, double b) {
+		pushPila(a * b);
+	}
+	public void div(double a, double b) {
+		pushPila(a / b);
+	}
 	public double resultado( ) {
 		double a, b;
+	
 		int j;
 		for(int contador = 0; contador < commando.length( ); contador++) {
 			// si es un digito
@@ -29,11 +44,12 @@ public class RPN {
 				}
 				// convertir a double y añadir a la pila
 				numero = Double.parseDouble(temp);
+				
 				pushPila(numero);
 			} else if(commando.charAt(contador) == '+') {
 				b = popPila( );
 				a = popPila( );
-				pushPila(a + b);
+				pushPila(suma(a,b));
 			} else if(commando.charAt(contador) == '-') {
 				b = popPila( );
 				a = popPila( );
