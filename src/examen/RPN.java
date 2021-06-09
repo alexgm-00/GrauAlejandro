@@ -1,70 +1,70 @@
 package examen;
 public class RPN {
 	public void pushPila(double nuevo_dato) {
-		NodoPila nuevo_nodo = new NodoPila(nuevo_dato, arriba);
-		arriba = nuevo_nodo;
+		NodoPila nuevo_nodo = new NodoPila(nuevo_dato, nodo);
+		nodo = nuevo_nodo;
 	}
 	public double popPila( ) {
-		double dato_arriba = arriba.dato;
-		arriba = arriba.abajo;
+		double dato_arriba = nodo.dato;
+		nodo = nodo.abajo;
 		return dato_arriba;
 	}
 	public RPN(String commando) {
-		arriba = null;
+		nodo = null;
 		this.commando = commando;
 	}
 	public double resultado( ) {
 		double a, b;
 		int j;
-		for(int i = 0; i < commando.length( ); i++) {
+		for(int contador = 0; contador < commando.length( ); contador++) {
 			// si es un digito
-			if(Character.isDigit(commando.charAt(i))) {
+			if(Character.isDigit(commando.charAt(contador))) {
 				double numero;
 				// obtener un string a partir del numero
 				String temp = "";
 				for(j = 0; (j < 100) && (Character.isDigit(
-						commando.charAt(i)) || (commando.charAt(i) == '.')); j++, i++) {
+						commando.charAt(contador)) || (commando.charAt(contador) == '.')); j++, contador++) {
 					temp = temp + String.valueOf(commando.
-							charAt(i));
+							charAt(contador));
 				}
 				// convertir a double y añadir a la pila
 				numero = Double.parseDouble(temp);
 				pushPila(numero);
-			} else if(commando.charAt(i) == '+') {
+			} else if(commando.charAt(contador) == '+') {
 				b = popPila( );
 				a = popPila( );
 				pushPila(a + b);
-			} else if(commando.charAt(i) == '-') {
+			} else if(commando.charAt(contador) == '-') {
 				b = popPila( );
 				a = popPila( );
 				pushPila(a - b);
-			} else if(commando.charAt(i) == '*') {
+			} else if(commando.charAt(contador) == '*') {
 				b = popPila( );
 				a = popPila( );
 				pushPila(a * b);
-			} else if(commando.charAt(i) == '/') {
+			} else if(commando.charAt(contador) == '/') {
 				b = popPila( );
 				a = popPila( );
 				pushPila(a / b);
 			}
-			else if(commando.charAt(i) == '^') {
+			else if(commando.charAt(contador) == '^') {
 				b = popPila( );
 				a = popPila( );
 				pushPila(Math.pow(a, b));}
-			else if(commando.charAt(i) == '%') {
+			else if(commando.charAt(contador) == '%') {
 				b = popPila( );
 				a = popPila( );
 				pushPila(a%b);
-			} else if(commando.charAt(i) != ' ') {
+			} else if(commando.charAt(contador) != ' ') {
 				throw new IllegalArgumentException( );
 			}
 		}
-		double val = popPila( );
-		if(arriba != null) {
+		double valor = popPila( );
+		if(nodo != null) {
 			throw new IllegalArgumentException( );
 		}
-		return val;
+		return valor;
 	}
 	private String commando;
-	private NodoPila arriba;
+	private NodoPila nodo;
 }
