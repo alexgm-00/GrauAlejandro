@@ -1,11 +1,20 @@
 package examen;
+/*
+ * @author Alex
+ * @version 4.0
+ * 
+ */
 public class RPN {
-	//poner informacion 
+	/*@param push
+	 * poner informacion 
+	 */
 	public void pushPila(double nuevo_dato) {
 		NodoPila nuevo_nodo = new NodoPila(nuevo_dato, nodo);
 		nodo = nuevo_nodo;
 	}
-	//extraer informacion
+	/* @param pop
+	 * extraer informacion
+	 */
 	public double popPila( ) {
 		double dato_arriba = nodo.dato;
 		nodo = nodo.abajo;
@@ -15,7 +24,9 @@ public class RPN {
 		nodo = null;
 		this.commando = commando;
 	}
-	
+	/* @param metodos
+	 *  metodos de las operaciones 
+	 */
 	public double suma(double a, double b) {
 		
 		double result= a + b;
@@ -36,7 +47,9 @@ public class RPN {
 		double result= a / b;
 		return result;
 	}
-	
+	/* @param resultado
+	 * metodo para el resultado
+	 */
 	public double resultado( ) {
 		double a, b;
 	
